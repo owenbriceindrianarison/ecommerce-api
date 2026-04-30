@@ -1,0 +1,26 @@
+# ecommerce-api/buf.gen.yaml
+
+version: v2
+
+# Source : le module publié sur BSR (pas un chemin local)
+inputs:
+  - module: buf.build/oenbriceindrianarison/ecommerce
+
+plugins:
+  # Génère les structs Rust (messages Protobuf)
+  - remote: buf.build/community/neoeinstein-prost
+    out: crates/proto-gen/src/gen
+    opt:
+      - compile_well_known_types=false
+      - extern_path=.google.protobuf=::pbjson_types
+
+  # Génère les services gRPC (traits tonic)
+  - remote: buf.build/community/neoeinstein-tonic
+    out: crates/proto-gen/src/gen
+    opt:
+      - compile_well_known_types=false
+      - extern_path=.google.protobuf=::pbjson_types
+
+  # Génère Serialize/Deserialize pour le debug et les logs
+  - remote: buf.build/community/neoeinstein-prost-serde
+    out: crates/proto-gen/src/gen

@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "crates/shared-kernel",
+    "crates/identity",
+    "crates/catalog",
+    "crates/inventory",
+    "crates/cart",
+    "crates/order",
+    "crates/payment",
+    "crates/notification",
+    "crates/server",
+]
